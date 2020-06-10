@@ -1,0 +1,211 @@
+import AddSensor from "../../Components/Sensor/AddSensor";
+import {
+  setDataPoints,
+  setIsComplex,
+  setLiveFeedURL,
+  setPredictedValueAbsoluteError,
+  setProjectName,
+  setReduceTrainingTime,
+  setSensorNames,
+} from "../../stores/sensors/sensorsActions";
+import { useConfig, useDataPoints } from "../../stores/sensors/sensorsStore";
+import React, { useState } from "react";
+import CSVReader from "react-csv-reader";
+import { setTimeout } from "timers";
+
+import { uploadConfig, uploadData } from "./transferLib.js";
+
+import "./ProjectSetup.css";
+
+const ProjectSetup = (props) => {
+  const [progress, setProgress] = useState(0);
+
+  const [uploading, setUploading] = useState(false);
+  const [selectedDataset, setSelectedDataset] = useState(false);
+  const [startingTraining, setStartingTraining] = useState(false);
+
+  const [localIsComplex, setLocalIsComplex] = useState(false);
+  const [localReduceTrainingTime, setLocalReduceTrainingTime] = useState(false);
+
+  const [lastStep, setLastStep] = useState(false);
+  const [step2, setStep2] = useState(false);
+
+  const config = useConfig();
+  const dataPoints = useDataPoints();
+
+  const handleProjectName = (e) => {
+    if (e.target.value) {
+      setProjectName(e.target.value);
+      setStep2(true);
+    }
+  };
+
+  const handleURL = (e) => {
+    if (e.target.value) {
+      setLiveFeedURL(e.target.value);
+    }
+  };
+
+  const startTraining = () => {
+    if (config.output.length === 1) {
+      setStartingTraining(true);
+      handleUpload();
+    } else {
+      alert("Can only train with one output");
+    }
+  };
+
+  const selectDataset = (data) => {
+    setSelectedDataset(true);
+    setDataPoints(data);
+    setSensorNames(data[0]);
+  };
+
+  const handleUpload = () => {
+    setUploading(true);
+    uploadData(dataPoints, config["projectName"], setProgress);
+    uploadConfig(config, config["projectName"], setProgress);
+    setUploading(false);
+
+    if (config.projectName.length > 0) {
+      if (localStorage.getItem("projects")) {
+        localStorage.setItem(
+          "projects",
+          localStorage.getItem("projects") + " " + config.projectName
+        );
+      } else {
+        localStorage.setItem("projects", config.projectName);
+      }
+    }
+    setTimeout(() => {
+      props.history.push(config.projectName + "/configuration");
+    }, 3000);
+  };
+
+  const changeDatasetFact = (id) => {
+    switch (id) {
+      case "reduceTrainingTime":
+        setReduceTrainingTime(!localReduceTrainingTime);
+        setLocalReduceTrainingTime(!localReduceTrainingTime);
+        break;
+      case "isComplex":
+        setIsComplex(!localIsComplex);
+        setLocalIsComplex(!localIsComplex);
+        break;
+      default:
+        break;
+    }
+  };
+
+  return (
+    <div className="Container">
+      <div className="NewProject">Create new project</div>
+      <div className="Project">
+        <div className="Setup__Option">
+          Step 1: Choose a name for the project and set an URL for livefeed data
+        </div>
+        <div className="ProjectName">Choose a name for the project</div>
+        <input onChange={handleProjectName} />
+        <div className="ProjectName">Set an URL for livefeed data</div>
+        <input onChange={handleURL} placeholder="ws://129.241.153.34:1337" />
+        {step2 && (
+          <div>
+            <div className="Setup__Option">Step 2: Upload dataset (.csv)</div>
+            <div className="ProjectName">Choose your file </div>
+            <CSVReader
+              cssClass="react-csv-input"
+              onFileLoaded={selectDataset}
+            />
+          </div>
+        )}
+        {selectedDataset && (
+          <React.Fragment>
+            <div className="Setup__Option">
+              Step 3: Choose values for sensors
+            </div>
+            <table>
+              <tbody>
+                <tr>
+                  <th className="TableField">Sensor </th>
+                  <th className="TableField">Input</th>
+                  <th className="TableField">output</th>
+                  <th className="TableField">Other</th>
+                  <th className="TableField">Unit</th>
+                  <th className="TableField">Min-value</th>
+                  <th className="TableField">Max-value</th>
+                </tr>
+                {config.sensorNames &&
+                  config.sensorNames.map((sensor) => (
+                    <AddSensor key={sensor} sensor={sensor} />
+                  ))}
+              </tbody>
+            </table>
+            <button onClick={() => setLastStep(true)}>Set sensors</button>
+          </React.Fragment>
+        )}
+        {lastStep && (
+          <div>
+            <div className="Setup__Option">Step 4: Describe your dataset</div>
+            <div className="Setup__ProjectName">
+              <div>
+                Do you consider the data to be very complex? Any function that
+                can be approximated with a (non-high-degree) polynomial is
+                generally not considered complex.
+              </div>
+              <input
+                type="checkbox"
+                checked={localIsComplex}
+                onClick={() => changeDatasetFact("isComplex")}
+              />
+            </div>
+            <div className="Setup__ProjectName">
+              <div>
+                Do you want to possibly reduce the training time by discarding
+                covariant features? Training machine learning models require
+                many calculations, which can be sped up by considering a reduced
+                number of features.
+              </div>
+              <input
+                type="checkbox"
+                checked={localReduceTrainingTime}
+                onClick={() => changeDatasetFact("reduceTrainingTime")}
+              />
+            </div>
+            <div className="Setup__ProjectName">
+              <div>
+                On your predicted value, how much prediction error do you allow
+                before you suspect a failure?
+                {/*<div className="sensorInput">
+                  Percentage:{" "}
+                  <input
+                    type="number"
+                    onChange={e =>
+                      setPredictedValuePercentageError(e.target.value)
+                    }
+                  />
+                  </div>*/}
+                <div className="sensorInput">
+                  Absolute:{" "}
+                  <input
+                    type="number"
+                    onChange={(e) =>
+                      setPredictedValueAbsoluteError(e.target.value)
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <button className="buttonStyle" onClick={startTraining}>
+              Start training your model
+            </button>
+            {startingTraining && <div>Loading...</div>}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+export default ProjectSetup;
+// 1. "My dataset has columns with very different value ranges" --> true: standardization, false: normalzation
+// 2. "My dataset is very complex" --> true: flere/bredere lag, false: standard modell
+// 3. "I want to reduce training time by discarding covariant features" --> true: discardColumns, false: ikke

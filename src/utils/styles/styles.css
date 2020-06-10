@@ -1,0 +1,204 @@
+/* General */
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.App {
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* External components */
+.Select {
+  min-width: 150px;
+  max-width: 250px;
+}
+
+.Select-menu-outer {
+  z-index: 999 !important;
+}
+
+/* Components */
+
+.Map {
+  height: 512px;
+  max-height: 420px;
+  width: 100%;
+}
+
+.Logo {
+  height: 20px;
+  width: 20px;
+}
+
+/* Modals */
+
+.AddNewModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  overflow: scroll;
+  max-width: 800px;
+  min-width: 800px;
+  min-height: 500px;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  transition: 1s ease-in-out;
+  padding: 0px;
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  transition: all 1s ease-in-out 0s;
+  max-height: 100vh;
+  overflow-y: overlay;
+}
+
+.MagicModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  overflow: scroll;
+  max-width: 1200px;
+  min-width: 1100px;
+  min-height: 600px;
+
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  transition: 1s ease-in-out;
+  padding: 0px;
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  transition: all 1s ease-in-out 0s;
+  max-height: 100vh;
+  overflow-y: overlay;
+}
+
+.UserModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  max-width: 700px;
+  bottom: auto;
+  min-width: 600px;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  transition: 1s ease-in-out;
+  padding: 0px;
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  transition: all 1s ease-in-out 0s;
+}
+
+.ScrollModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  max-width: 700px;
+  max-height: 80vh;
+  padding: 0px 20px;
+  bottom: auto;
+  min-width: 600px;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  transition: 1s ease-in-out;
+  padding: 0px;
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  transition: all 1s ease-in-out 0s;
+}
+
+.FileUpload {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  overflow: scroll;
+  min-width: 800px;
+  min-height: 500px;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  transition: 1s ease-in-out;
+  padding: 0px;
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  transition: all 1s ease-in-out 0s;
+  max-height: 100vh;
+  overflow-y: overlay;
+}
+
+.SettingsModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  height: auto;
+  bottom: auto;
+  min-width: 600px;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  transition: 1s ease-in-out;
+  padding: 0px;
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  transition: all 1s ease-in-out 0s;
+}
+
+iframe {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0px;
+}
