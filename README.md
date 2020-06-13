@@ -94,37 +94,12 @@ surge
 - Do not use Internet Explorer (optimized for Google Chrome and Safari)
 
 ## User guides
-
-<details>
-   <summary>Create a user</summary>
-   
-   Pictures on how to create a user instead of youtube links...
-   
-   
-</details>
-
-- [Create a user](https://www.youtube.com)
-- [Create a project](https://www.youtube.com)
-- [Invite user to project and chat inside a project](https://www.youtube.com)
-- [Add a datasource (CSV data)](https://www.youtube.com)
-   - Requires UDP connection
-- [Add a datasource (JSON data)](https://www.youtube.com)
-   - Requires UDP connection
-- [Upload a 3D model](https://www.youtube.com)
-    - Requires FMU format
-- [Display real-time data](https://www.youtube.com)
-
-## FAQ
-- __What is a datasource?__
-   - A datasource is a source that sends raw sensor data. This could be an physical asset or e.g. your phone.
-- __What is a processor?__ 
-   - A processor is ...
-- __What is an FMU?__
-- __What is the FMU format?__
-- __How can I create my own datasource?__ 
-   - You can use your phone. Download the Sensorlog app (link).
-- __What kind of sampling rate does the Digital Twin Cloud Platform support?__
-
+- [Introduction video](https://www.youtube.com/watch?v=J9HCDY4ji9A)
+- [Create project, configure datasource with CSV data and upload model](https://www.youtube.com/watch?v=NVK11OFoFIo)
+- [Configure JSON datasource](https://www.youtube.com/watch?v=Kc6xRuD5ElI)
+- [Visualization of 3D models, even triggers and notifications](https://www.youtube.com/watch?v=8di6MFMW1t0)
+- [Real-time data and report generator](https://www.youtube.com/watch?v=eMwcWiSKC8E)
+- [Analytics (FFTs, video streaming, spectrograms, historical data, predictions etc)](https://www.youtube.com/watch?v=fguiR-mA4gg)
 
 
 
