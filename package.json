@@ -64,7 +64,7 @@
     "@types/stats-lite": "^2.2.0",
     "@types/styled-components": "^4.4.3",
     "@vx/gradient": "^0.0.194",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "d3": "^5.16.0",
     "emotion": "^10.0.27",
     "file-saver": "^2.0.2",
