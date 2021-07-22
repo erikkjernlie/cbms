@@ -103,7 +103,7 @@
     "stats-lite": "^2.2.0",
     "styled-components": "^5.1.0",
     "typescript": "3.6.4",
-    "xlsx": "^0.15.6",
+    "xlsx": "^0.17.0",
     "zustand": "^2.2.3"
   },
   "scripts": {
