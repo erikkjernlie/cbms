@@ -76,7 +76,7 @@
     "lodash.clonedeep": "^4.5.0",
     "moment": "^2.26.0",
     "mpld3": "^0.4.13",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "plotly.js": "^1.54.1",
     "react": "^16.13.1",
     "react-beautiful-dnd": "^13.0.0",
